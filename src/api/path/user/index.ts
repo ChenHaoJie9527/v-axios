@@ -1,6 +1,10 @@
 import { Get } from "../../server";
 
-export function gerUserInfo() {}
+const urlSuffix = "/api";
+
+export async function gerUserInfo(url: string) {
+  const [err, result] = await Get(`${urlSuffix}/${url}`, {});
+}
 
 export function getUserName() {}
 

@@ -24,4 +24,14 @@ export default defineConfig({
       resolvers: [NaiveUiResolver()],
     }),
   ],
+  server: {
+    cors: true,
+    proxy: {
+      "/api": {
+        target: "http://localhost:8009",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
+  },
 });
