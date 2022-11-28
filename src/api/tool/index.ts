@@ -1,5 +1,4 @@
 import type { AuthErrorMap, NetworkErrorState } from "./type";
-import { ElMessage } from "element-plus";
 // 业务处理函数
 export const handleRequestHeader = (config: Record<string, any>) => {
   config["xxx"] = "xxx";
@@ -27,12 +26,12 @@ export const handleNetworkError = (errorState: NetworkErrorState) => {
     "505": "http版本不支持该请求",
   };
   if (errorState) {
-    ElMessage.error(
+    window.$message.error(
       networkErrMap[errorState] ?? `其他连接错误 --${errorState}`
     );
     return;
   }
-  ElMessage.error("网络繁忙");
+  window.$message.error("网络繁忙");
 };
 
 export const handleAuthError = (error: AuthErrorMap) => {
@@ -47,7 +46,7 @@ export const handleAuthError = (error: AuthErrorMap) => {
     "10038": "账号未找到",
   };
   if (authErrMap.hasOwnProperty(error)) {
-    ElMessage.error(authErrMap[error]);
+    window.$message.error(authErrMap[error]);
     // 授权错误，登出账户
     // logout();
     return false;
@@ -58,7 +57,7 @@ export const handleAuthError = (error: AuthErrorMap) => {
 export const handleGeneralError = (errno: string, errmsg: string) => {
   if (errno !== "0") {
     // meessage.error(err.errmsg);
-    ElMessage.error(errmsg);
+    window.$message.error(errmsg);
     return false;
   }
 

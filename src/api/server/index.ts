@@ -1,7 +1,6 @@
 // 通用操作封装
 
 import axios from "axios";
-import { ElMessage } from "element-plus";
 import {
   handleAuth,
   handleAuthError,
