@@ -55,8 +55,7 @@ export const handleAuthError = (error: AuthErrorMap) => {
 };
 
 export const handleGeneralError = (errno: string, errmsg: string) => {
-  if (errno !== "0") {
-    // meessage.error(err.errmsg);
+  if (errno === "0") {
     window.$message.error(errmsg);
     return false;
   }

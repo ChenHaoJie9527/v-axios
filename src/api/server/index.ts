@@ -14,8 +14,8 @@ interface IAnyObj {
 }
 
 interface FcResponse<T> {
-  errno: string;
-  errmsg: string;
+  error: string;
+  message: string;
   data: T;
 }
 
@@ -31,8 +31,8 @@ axios.interceptors.response.use(
   (response) => {
     if (response.status !== 200) return Promise.reject(response.data);
 
-    handleAuthError(response.data.errno);
-    handleGeneralError(response.data.errno, response.data.errmsg);
+    handleAuthError(response.data.error);
+    handleGeneralError(response.data.error, response.data.message);
 
     return response;
   },
@@ -42,7 +42,7 @@ axios.interceptors.response.use(
   }
 );
 
-export const Get = <T>(
+export const Get = <T = any>(
   url: string,
   params: IAnyObj = {},
   clearFn?: Fn

@@ -9,5 +9,7 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     GlobalDialog: typeof import('./src/components/common/GlobalDialog.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
+    NButton: typeof import('naive-ui')['NButton']
+    User: typeof import('./src/components/user.vue')['default']
   }
 }
