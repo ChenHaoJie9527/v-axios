@@ -1,5 +1,6 @@
 <template>
   <n-button type="primary" @click="onInfo"> Primary </n-button>
+  <n-button @click="onHandleMessage">打开 message loading</n-button>
 </template>
 
 <script setup lang="ts">
@@ -17,6 +18,12 @@ const onInfo = () => {
     },
   });
 };
+
+const onHandleMessage = () => {
+  window.$message.loading("loading...", {
+    closable: true,
+  })
+}
 </script>
 
 <style></style>

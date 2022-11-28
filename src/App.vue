@@ -1,7 +1,7 @@
 <template>
-  <NMessageProvider>
+  <NMessageProvider :closable="true" :placement="'top'" :duration="5000">
     <NDialogProvider>
-      <GlobalContainer />
+      <GlobalDialog />
     </NDialogProvider>
   </NMessageProvider>
   <HelloWorld></HelloWorld>
@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import { NMessageProvider, NDialogProvider } from "naive-ui";
-import GlobalContainer from "./components/common/global.vue";
+import GlobalDialog from "./components/common/GlobalDialog.vue";
 import HelloWorld from "./components/HelloWorld.vue";
 
 </script>
