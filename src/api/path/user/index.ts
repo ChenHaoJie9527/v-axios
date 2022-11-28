@@ -1,4 +1,4 @@
-import { Get } from "../../server";
+import { Get, Post } from "../../server";
 
 const urlSuffix = "/api";
 
@@ -9,14 +9,22 @@ export async function getUserInfo(
   const [err, result] = await Get(
     `${urlSuffix}/${url}?name=${query.name}&age=${query.age}`
   );
-  if (!err && result?.data) {
+  return checkResult(err, result);
+}
+
+export async function getUserName(url: string, params: { name: string }) {
+  const [err, result] = await Post(`${urlSuffix}/${url}`, params);
+  console.log(err, result);
+  return checkResult(err, result);
+}
+
+function checkResult(err: any, result: any) {
+  if (!err && result) {
     window.$message.success(result.message);
     return result;
   }
   return null;
 }
-
-export function getUserName() {}
 
 export const userApi = {
   getUserInfo,

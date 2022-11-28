@@ -1,6 +1,9 @@
 <template>
   <div>
     <NButton :loading="isLoading" @click="onHandleUser">获取 user 信息</NButton>
+    <NButton :loading="_isLoading" @click="onHandleTest"
+      >获取 test 数据</NButton
+    >
   </div>
 </template>
 
@@ -10,8 +13,9 @@ import { ref } from "vue";
 import { api } from "../api";
 
 const isLoading = ref(false);
+const _isLoading = ref(false);
 
-const { getUserInfo } = api;
+const { getUserInfo, getUserName } = api;
 const onHandleUser = async () => {
   isLoading.value = true;
   const result = await getUserInfo("/user", {
@@ -21,6 +25,14 @@ const onHandleUser = async () => {
   if (result) {
     isLoading.value = false;
   }
+};
+
+const onHandleTest = async () => {
+  _isLoading.value = true;
+  await getUserName("/test", {
+    name: "chj",
+  });
+  _isLoading.value = false;
 };
 </script>
 

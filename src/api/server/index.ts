@@ -71,8 +71,13 @@ export const Post = <T>(
   params: IAnyObj = {}
 ): Promise<[any, FcResponse<T> | undefined]> => {
   return new Promise((resolve) => {
-    axios
-      .post(url, data, { params })
+    axios({
+      url,
+      method: "POST",
+      data: {
+        ...data,
+      },
+    })
       .then((res) => {
         resolve([null, res.data as FcResponse<T>]);
       })
