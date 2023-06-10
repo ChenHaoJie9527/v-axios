@@ -4,6 +4,9 @@
     <NButton :loading="_isLoading" @click="onHandleTest"
       >获取 test 数据</NButton
     >
+    <NButton :loading="_isLoadingV1" @click="onHandleUserList">
+      获取 list 信息
+    </NButton>
   </div>
 </template>
 
@@ -14,8 +17,9 @@ import { api } from "../api";
 
 const isLoading = ref(false);
 const _isLoading = ref(false);
+const _isLoadingV1 = ref(false);
 
-const { getUserInfo, getUserName } = api;
+const { getUserInfo, getUserName, getUserList } = api;
 const onHandleUser = async () => {
   isLoading.value = true;
   const result = await getUserInfo("/user", {
@@ -33,6 +37,19 @@ const onHandleTest = async () => {
     name: "chj",
   });
   _isLoading.value = false;
+};
+
+const onHandleUserList = async () => {
+  _isLoadingV1.value = true;
+  try {
+    await getUserList("/userList", {
+      uid: 1,
+      tokenId: "0x14",
+    });
+    _isLoadingV1.value = false;
+  } catch (error) {
+    _isLoadingV1.value = false;
+  }
 };
 </script>
 

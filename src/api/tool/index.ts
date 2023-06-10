@@ -62,3 +62,11 @@ export const handleGeneralError = (errno: string, errmsg: string) => {
 
   return true;
 };
+
+export function checkResult(err: any, result: any) {
+  if (!err && result) {
+    window.$message.success(result.message);
+    return result;
+  }
+  return null;
+}
